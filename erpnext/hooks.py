@@ -655,7 +655,10 @@ default_log_clearing_doctypes = {
 export_python_type_annotations = True
 
 fields_for_group_similar_items = ["qty", "amount"]
+<<<<<<< HEAD
 
 permission_query_conditions = {
     "Lead": "erpnext.crm.doctype.lead.lead.get_permission_query_conditions_for_lead"
 }
+=======
+>>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1

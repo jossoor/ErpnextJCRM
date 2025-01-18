@@ -9,7 +9,11 @@
  "hide_custom": 0,
  "icon": "setting",
  "idx": 0,
+<<<<<<< HEAD
  "is_hidden": 1,
+=======
+ "is_hidden": 0,
+>>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1
  "label": "ERPNext Settings",
  "links": [
   {
@@ -437,7 +441,11 @@
    "type": "Link"
   }
  ],
+<<<<<<< HEAD
  "modified": "2024-12-24 13:23:40.963353",
+=======
+ "modified": "2024-11-19 13:05:34.308895",
+>>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "ERPNext Settings",

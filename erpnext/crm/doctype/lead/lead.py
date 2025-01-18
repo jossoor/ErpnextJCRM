@@ -528,6 +528,7 @@ def add_lead_to_prospect(lead, prospect):
 		title=_("Lead -> Prospect"),
 		indicator="green",
 	)
+<<<<<<< HEAD
 
 def get_permission_query_conditions_for_lead(user):
     if "System Manager" in frappe.get_roles(user):
@@ -539,3 +540,5 @@ def get_permission_query_conditions_for_lead(user):
             f"or tabLead.lead_owner = {escaped_user}) "
             f"or (tabLead.name in (select tabLead.name from tabLead where (tabLead._assign like '%\"{user}\"%')))"
         )
+=======
+>>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1
