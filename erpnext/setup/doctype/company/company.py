@@ -58,19 +58,9 @@ class Company(NestedSet):
 		default_expense_account: DF.Link | None
 		default_finance_book: DF.Link | None
 		default_holiday_list: DF.Link | None
-<<<<<<< HEAD
 		default_income_account: DF.Link | None
 		default_letter_head: DF.Link | None
 		default_payable_account: DF.Link | None
-=======
-		default_in_transit_warehouse: DF.Link | None
-		default_income_account: DF.Link | None
-		default_inventory_account: DF.Link | None
-		default_letter_head: DF.Link | None
-		default_operating_cost_account: DF.Link | None
-		default_payable_account: DF.Link | None
-		default_provisional_account: DF.Link | None
->>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1
 		default_receivable_account: DF.Link | None
 		default_selling_terms: DF.Link | None
 		default_warehouse_for_sales_return: DF.Link | None
@@ -79,18 +69,10 @@ class Company(NestedSet):
 		disposal_account: DF.Link | None
 		domain: DF.Data | None
 		email: DF.Data | None
-<<<<<<< HEAD
 		exception_budget_approver_role: DF.Link | None
 		exchange_gain_loss_account: DF.Link | None
 		existing_company: DF.Link | None
 		expenses_included_in_asset_valuation: DF.Link | None
-=======
-		enable_perpetual_inventory: DF.Check
-		enable_provisional_accounting_for_non_stock_items: DF.Check
-		exception_budget_approver_role: DF.Link | None
-		exchange_gain_loss_account: DF.Link | None
-		existing_company: DF.Link | None
->>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1
 		fax: DF.Data | None
 		is_group: DF.Check
 		lft: DF.Int
@@ -106,11 +88,6 @@ class Company(NestedSet):
 		round_off_cost_center: DF.Link | None
 		sales_monthly_history: DF.SmallText | None
 		series_for_depreciation_entry: DF.Data | None
-<<<<<<< HEAD
-=======
-		stock_adjustment_account: DF.Link | None
-		stock_received_but_not_billed: DF.Link | None
->>>>>>> 010c7b51986075b3764124ddd317a66a0a2da5c1
 		submit_err_jv: DF.Check
 		tax_id: DF.Data | None
 		total_monthly_sales: DF.Currency
