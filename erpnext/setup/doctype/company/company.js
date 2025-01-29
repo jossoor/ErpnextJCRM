@@ -252,6 +252,7 @@ erpnext.company.setup_queries = function (frm) {
 			["default_expense_account", { root_type: "Expense" }],
 			["default_income_account", { root_type: "Income" }],
 			["round_off_account", { root_type: "Expense" }],
+			["round_off_for_opening", { root_type: "Liability", account_type: "Round Off for Opening" }],
 			["write_off_account", { root_type: "Expense" }],
 			["default_deferred_expense_account", {}],
 			["default_deferred_revenue_account", {}],
@@ -273,10 +274,6 @@ erpnext.company.setup_queries = function (frm) {
 			["cost_center", {}],
 			["round_off_cost_center", {}],
 			["depreciation_cost_center", {}],
-			[
-				"expenses_included_in_asset_valuation",
-				{ account_type: "Expenses Included In Asset Valuation" },
-			],
 			["capital_work_in_progress_account", { account_type: "Capital Work in Progress" }],
 			["asset_received_but_not_billed", { account_type: "Asset Received But Not Billed" }],
 			["unrealized_profit_loss_account", { root_type: ["in", ["Liability", "Asset"]] }],
@@ -293,10 +290,6 @@ erpnext.company.setup_queries = function (frm) {
 		$.each(
 			[
 				["stock_adjustment_account", { root_type: "Expense", account_type: "Stock Adjustment" }],
-				[
-					"expenses_included_in_valuation",
-					{ root_type: "Expense", account_type: "Expenses Included in Valuation" },
-				],
 				[
 					"stock_received_but_not_billed",
 					{ root_type: "Liability", account_type: "Stock Received But Not Billed" },

@@ -58,9 +58,13 @@ class Company(NestedSet):
 		default_expense_account: DF.Link | None
 		default_finance_book: DF.Link | None
 		default_holiday_list: DF.Link | None
+		default_in_transit_warehouse: DF.Link | None
 		default_income_account: DF.Link | None
+		default_inventory_account: DF.Link | None
 		default_letter_head: DF.Link | None
+		default_operating_cost_account: DF.Link | None
 		default_payable_account: DF.Link | None
+		default_provisional_account: DF.Link | None
 		default_receivable_account: DF.Link | None
 		default_selling_terms: DF.Link | None
 		default_warehouse_for_sales_return: DF.Link | None
@@ -69,10 +73,11 @@ class Company(NestedSet):
 		disposal_account: DF.Link | None
 		domain: DF.Data | None
 		email: DF.Data | None
+		enable_perpetual_inventory: DF.Check
+		enable_provisional_accounting_for_non_stock_items: DF.Check
 		exception_budget_approver_role: DF.Link | None
 		exchange_gain_loss_account: DF.Link | None
 		existing_company: DF.Link | None
-		expenses_included_in_asset_valuation: DF.Link | None
 		fax: DF.Data | None
 		is_group: DF.Check
 		lft: DF.Int
@@ -82,12 +87,18 @@ class Company(NestedSet):
 		payment_terms: DF.Link | None
 		phone_no: DF.Data | None
 		reconcile_on_advance_payment_date: DF.Check
+		reconciliation_takes_effect_on: DF.Literal[
+			"Advance Payment Date", "Oldest Of Invoice Or Advance", "Reconciliation Date"
+		]
 		registration_details: DF.Code | None
 		rgt: DF.Int
 		round_off_account: DF.Link | None
 		round_off_cost_center: DF.Link | None
+		round_off_for_opening: DF.Link | None
 		sales_monthly_history: DF.SmallText | None
 		series_for_depreciation_entry: DF.Data | None
+		stock_adjustment_account: DF.Link | None
+		stock_received_but_not_billed: DF.Link | None
 		submit_err_jv: DF.Check
 		tax_id: DF.Data | None
 		total_monthly_sales: DF.Currency
@@ -169,7 +180,6 @@ class Company(NestedSet):
 			["Default Income Account", "default_income_account"],
 			["Stock Received But Not Billed Account", "stock_received_but_not_billed"],
 			["Stock Adjustment Account", "stock_adjustment_account"],
-			["Expense Included In Valuation Account", "expenses_included_in_valuation"],
 		]
 
 		for account in accounts:
@@ -266,7 +276,7 @@ class Company(NestedSet):
 		if frappe.flags.parent_company_changed:
 			from frappe.utils.nestedset import rebuild_tree
 
-			rebuild_tree("Company", "parent_company")
+			rebuild_tree("Company")
 
 		frappe.clear_cache()
 
@@ -288,9 +298,7 @@ class Company(NestedSet):
 						"parent_warehouse": "{} - {}".format(_("All Warehouses"), self.abbr)
 						if not wh_detail["is_group"]
 						else "",
-						"warehouse_type": wh_detail["warehouse_type"]
-						if "warehouse_type" in wh_detail
-						else None,
+						"warehouse_type": wh_detail.get("warehouse_type"),
 					}
 				)
 				warehouse.flags.ignore_permissions = True
@@ -411,7 +419,7 @@ class Company(NestedSet):
 		frappe.local.flags.ignore_update_nsm = True
 		make_records(records)
 		frappe.local.flags.ignore_update_nsm = False
-		rebuild_tree("Department", "parent_department")
+		rebuild_tree("Department")
 
 	def validate_coa_input(self):
 		if self.create_chart_of_accounts_based_on == "Existing Company":
@@ -481,7 +489,6 @@ class Company(NestedSet):
 			"depreciation_expense_account": "Depreciation",
 			"capital_work_in_progress_account": "Capital Work in Progress",
 			"asset_received_but_not_billed": "Asset Received But Not Billed",
-			"expenses_included_in_asset_valuation": "Expenses Included In Asset Valuation",
 			"default_expense_account": "Cost of Goods Sold",
 		}
 
@@ -491,7 +498,6 @@ class Company(NestedSet):
 					"stock_received_but_not_billed": "Stock Received But Not Billed",
 					"default_inventory_account": "Stock",
 					"stock_adjustment_account": "Stock Adjustment",
-					"expenses_included_in_valuation": "Expenses Included In Valuation",
 				}
 			)
 
@@ -904,6 +910,14 @@ def get_default_company_address(name, sort_key="is_primary_address", existing_ad
 		return max(out, key=lambda x: x[1])[0]  # find max by sort_key
 	else:
 		return None
+
+
+@frappe.whitelist()
+def get_billing_shipping_address(name, billing_address=None, shipping_address=None):
+	primary_address = get_default_company_address(name, "is_primary_address", billing_address)
+	shipping_address = get_default_company_address(name, "is_shipping_address", shipping_address)
+
+	return {"primary_address": primary_address, "shipping_address": shipping_address}
 
 
 @frappe.whitelist()

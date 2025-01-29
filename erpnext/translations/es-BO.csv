@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSRF Token -->
-        <meta name="csrf-token" content="loAlU4fvbZn0QbxJm6GjEnoVawiNxSeZmOluhUkQ">
+        <meta name="csrf-token" content="1TGFnsivNzhZeZpQ017k3gVK4qS1M0qQd6tB4Akm">
 
         <meta name="websockets-host" content="wss://ws-lb.crowdin.com"/>
 
@@ -161,7 +161,7 @@
                 <input name="locale" type="hidden" value="en"/>
                 <input name="intended" type="hidden" value="/auth/token"/>
             
-                    <input type="hidden" name="_token" value="loAlU4fvbZn0QbxJm6GjEnoVawiNxSeZmOluhUkQ">
+                    <input type="hidden" name="_token" value="1TGFnsivNzhZeZpQ017k3gVK4qS1M0qQd6tB4Akm">
                     <div class="form-group">
                         <label for="login_login">Email or Username</label>
                         <input
@@ -251,7 +251,7 @@
                 <input name="locale" type="hidden" value="en"/>
                 <input name="intended" type="hidden" value="/auth/token"/>
             
-            <input type="hidden" name="_token" value="loAlU4fvbZn0QbxJm6GjEnoVawiNxSeZmOluhUkQ">        </form>
+            <input type="hidden" name="_token" value="1TGFnsivNzhZeZpQ017k3gVK4qS1M0qQd6tB4Akm">        </form>
     
     <div class="openid-login btn-group-vertical" style="display: block;">
                                     <a
