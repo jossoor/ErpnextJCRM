@@ -656,6 +656,6 @@ export_python_type_annotations = True
 
 fields_for_group_similar_items = ["qty", "amount"]
 
-permission_query_conditions = {
-    "Lead": "erpnext.crm.doctype.lead.lead.get_permission_query_conditions_for_lead"
-}
+#permission_query_conditions = {
+#    "Lead": "erpnext.crm.doctype.lead.lead.get_permission_query_conditions_for_lead"
+#}
